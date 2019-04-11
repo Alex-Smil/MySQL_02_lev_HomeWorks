@@ -1,0 +1,5 @@
+Вопросы к les 02
+1. При создании базы CREATE SCHEMA db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+Насколько обязательно указывать эту опцию самому:
+<DEFAULT CHARACTER SET utf8 COLLATE utf8_bin> ?
+Или проще её опустить и создавать базу через: CREATE SCHEMA db_name;  ?
