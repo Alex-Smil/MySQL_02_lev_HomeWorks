@@ -15,11 +15,11 @@ mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL
 -- ***
 -- пункты 2b, 2c и 2d - это DUMP данных !!!
 	-- 2b. загружаем данные _countries.sql --
--- mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL_02_lev_HomeWorks\les02ex01-ALTER-TABLE-geodata-fixes\data-for-exersize\_countries.sql
+mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL_02_lev_HomeWorks\les02ex01-ALTER-TABLE-geodata-fixes\data-for-exersize\_countries.sql
 	-- 2c. загружаем _regions.sql --
--- mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL_02_lev_HomeWorks\les02ex01-ALTER-TABLE-geodata-fixes\data-for-exersize\_regions.sql
+mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL_02_lev_HomeWorks\les02ex01-ALTER-TABLE-geodata-fixes\data-for-exersize\_regions.sql
 	-- 2d. загружаем _cities.sql --
--- mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL_02_lev_HomeWorks\les02ex01-ALTER-TABLE-geodata-fixes\data-for-exersize\_cities.sql
+mysql -uroot -p123456 -P3360 geodata < D:\GEEK_BRAINS_D\MySQL\MySQL_lev_02\MySQL_02_lev_HomeWorks\les02ex01-ALTER-TABLE-geodata-fixes\data-for-exersize\_cities.sql
 -- ***
 
 -- Загрузка скрипта с исправлениями стркутуры таблиц, решение ДЗ les 02 ex 01:

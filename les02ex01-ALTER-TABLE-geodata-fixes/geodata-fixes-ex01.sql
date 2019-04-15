@@ -56,11 +56,17 @@ ALTER TABLE _cities DROP region_id;
 ALTER TABLE _cities ADD COLUMN region_id INT NOT NULL;
 
 ALTER TABLE _cities
+	DROP FOREIGN KEY fk_cities_regions_id;
+
+-- SET foreign_key_checks = 0;
+ALTER TABLE _cities
 ADD CONSTRAINT fk_cities_regions_id
 FOREIGN KEY(region_id)
 REFERENCES _regions(id)
 ON DELETE RESTRICT 
 ON UPDATE RESTRICT;
+-- SET foreign_key_checks = 1;
+
 
 ALTER TABLE _cities CHANGE COLUMN title_ru title VARCHAR(150) NOT NULL;
 CREATE INDEX title ON _cities(title);
