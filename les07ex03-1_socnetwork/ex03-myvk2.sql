@@ -68,19 +68,21 @@ VALUES (NULL, 'Alex'),
 	   (NULL, 'Ksu'),
 	   (NULL, 'Vika');
 
+-- полученные лайки пользователями
 INSERT INTO gotlikes
-VALUES (NULL, 5, 1),
-	(NULL, 4, 1),
-	(NULL, 1, 5),
-	(NULL, 1, 4),
-	(NULL, 1, 2);
+VALUES (NULL, 5, 1), -- Vika <- Alex
+	(NULL, 4, 1), -- Ksu <- Alex
+	(NULL, 1, 5), -- Alex <- Vika
+	(NULL, 1, 4), -- Alex <- Ksu
+	(NULL, 1, 2); -- Alex <- Bob
 
+-- выданные(поставленные кому-либо) лайки пользователями
 INSERT INTO putlikes
-VALUES (NULL, 1, 5),
-	(NULL, 1, 4),
-	(NULL, 5, 1),
-	(NULL, 4, 1),
-	(NULL, 2, 1);
+VALUES (NULL, 1, 5), -- Alex -> Vika
+	(NULL, 1, 4), -- Alex -> Ksu
+	(NULL, 5, 1), -- Vika -> Alex
+	(NULL, 4, 1), -- Ksu -> Alex
+	(NULL, 2, 1); -- Bob -> Alex
 
 
 SELECT * FROM users;
