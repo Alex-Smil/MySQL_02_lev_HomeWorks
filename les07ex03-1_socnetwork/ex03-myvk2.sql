@@ -1,11 +1,5 @@
 mysql -uroot -p123456 -P3360
 
-
-
-
-
-
--- 1 вариант структуры
 DROP DATABASE IF EXISTS myvk2;
 CREATE DATABASE myvk2;
 use myvk2;
