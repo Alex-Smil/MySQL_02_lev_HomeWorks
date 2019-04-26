@@ -1,4 +1,5 @@
 mysql -uroot -p123456 -P3360
+use myvk1;
 
 DROP DATABASE IF EXISTS myvk1;
 CREATE DATABASE myvk1;
@@ -73,49 +74,70 @@ SELECT * FROM likes;
 -- Vika put 2 likes
 -- Bob put 2 likes
 
--- кол-во Лайков у каждого пользователя по отдельности
+SELECT * FROM users;
+SELECT * FROM likes;
+
+
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- !!!!!!!!!!!!!!!!!   РЕШЕНИЕ ex03.1  !!!!!!!!!!!!!!!!!!!!
+-- Остались взаимные лайки
+
+-- Для начала разложу на более простые подзадачи
+-- have_likes
+SELECT to_user_id, COUNT(to_user_id) AS have_likes
+FROM likes
+GROUP BY to_user_id;	
+
+-- put_likes
+SELECT from_user_id, COUNT(from_user_id) AS put_likes
+FROM likes
+GROUP BY from_user_id;
+
+-- ================= 03.4 ===================
+-- Mutual likes
+SELECT u2.*, u1.* FROM users AS u1
+JOIN users AS u2;
+
+-- SELECT u2.*, u1.*, l.from_user_id, l.to_user_id FROM users AS u1
+-- JOIN users AS u2
+-- LEFT JOIN likes AS l ON u1.id = l.from_user_id;
+
+SELECT 
+-- ===========================================
+
+
+-- объедиенение в многосложный запрос
+SELECT u.*, hl.have_likes , pl.put_likes FROM users AS u 
+LEFT JOIN (
+	SELECT to_user_id, COUNT(to_user_id) AS have_likes
+	FROM likes
+	GROUP BY to_user_id
+) AS hl ON u.id = hl.to_user_id
+LEFT JOIN (
+	SELECT from_user_id, COUNT(from_user_id) AS put_likes
+	FROM likes
+	GROUP BY from_user_id
+) AS pl ON u.id = pl.from_user_id
+GROUP BY u.id;
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+-- *****  Черновик, простые запросы  *****
+-- кол-во Лайков у каждого пользователя по отдельности, вместе с LEFT JOIN likes
 SELECT u.*, COUNT(to_user_id) AS have_likes FROM users AS u
 LEFT JOIN likes AS l ON u.id = to_user_id
 GROUP BY u.id;
 
--- кол-во Лайков поставленных пользователя по отдельности
+-- кол-во Лайков поставленных пользователя по отдельности вместе с LEFT JOIN likes
 SELECT u.*, COUNT(from_user_id) AS put_likes FROM users AS u
 LEFT JOIN likes AS l ON u.id = from_user_id
 GROUP BY u.id;
-
-
-
-
--- SELECT * FROM users AS u
--- LEFT JOIN likes AS l ON u.id = l.to_user_id
--- LEFT JOIN likes ON u.id = likes.from_user_id;
-
-
--- SELECT u.id, name, COUNT(to_user_id) FROM users AS u
--- LEFT JOIN likes AS l ON l.to_user_id = u.id
--- GROUP BY l.to_user_id;
-
--- WHERE COUNT(to_user_id) > 0;
-
--- --  have_like
--- SELECT u.id, u.name, COUNT(to_user_id) AS have_like FROM likes AS l
--- LEFT JOIN users AS u ON l.to_user_id = u.id
--- GROUP BY l.to_user_id;
-
--- --  have_like +
--- -- SELECT u.id, u.name, COUNT(to_user_id) AS have_like, COUNT(u2/from_user_id) AS give_like FROM likes AS l
--- -- LEFT JOIN users AS u ON l.to_user_id = u.id
--- -- LEFT JOIN users AS u2 ON l.from_user_id = u.id
--- -- GROUP BY l.to_user_id AND l.from_user_id;
--- SELECT u.id, u.name, COUNT(to_user_id) AS have_like, COUNT(from_user_id) AS give_like FROM likes AS l
--- LEFT JOIN users AS u ON l.to_user_id = u.id
--- GROUP BY l.to_user_id;
-
-
--- -- =========
--- SELECT * FROM users u
--- JOIN likes l ON u.id = l.from_user_id; 
-
-
-
-
